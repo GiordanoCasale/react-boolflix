@@ -24,10 +24,19 @@ function App() {
   }
 
   const handleclick = () => {
-    axios.get(`https://api.themoviedb.org/3/search/movie?api_key=3fa3a72f0073cd9418d6d2a8e957a89f&query=${input}`, `https://api.themoviedb.org/3/search/tv?api_key=3fa3a72f0073cd9418d6d2a8e957a89f&query=${input}`)
+
+    axios.get(`https://api.themoviedb.org/3/search/movie?api_key=3fa3a72f0073cd9418d6d2a8e957a89f&query=${input}`)
       .then((response) => {
-        console.log(response.data);
         setMovies(response.data.results);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+
+    axios.get(`https://api.themoviedb.org/3/search/tv?api_key=3fa3a72f0073cd9418d6d2a8e957a89f&query=${input}`)
+      .then((response) => {
+        setTv(response.data.results);
       })
       .catch((error) => {
         console.log(error);
@@ -54,6 +63,29 @@ function App() {
       </div>
 
       <div className="row row-cols-1 row-cols-md-3 g-4">
+        {tv.map(series => (
+          <div key={series.id} className="col">
+            <div className="card h-100">
+              <div className="card-body">
+                <h5 className="card-title">Titolo: {series.name}</h5>
+                <p className="card-text">Titolo Originale: {series.original_name}</p>
+                <p className="card-text">
+                  Lingua: <ReactCountryFlag
+                    countryCode={getCountryCode(series.original_language)}
+                    svg
+                    style={{
+                      width: '1em',
+                      height: '1em',
+                    }}
+                  />
+                </p>
+                <p className="card-text">
+                  <small className="text-muted">Voto: {series.vote_average}/10</small>
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
         {movies.map(movie => (
           <div key={movie.id} className="col">
             <div className="card h-100">
