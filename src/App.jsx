@@ -66,6 +66,14 @@ function App() {
         {tv.map(series => (
           <div key={series.id} className="col">
             <div className="card h-100">
+              <img
+                src={`https://image.tmdb.org/t/p/w500${series.poster_path}`}
+                className="card-img-top"
+                alt={series.name}
+                onError={(e) => {
+                  e.target.src = 'https://via.placeholder.com/500x750?text=No+Image'
+                }}
+              />
               <div className="card-body">
                 <h5 className="card-title">Titolo: {series.name}</h5>
                 <p className="card-text">Titolo Originale: {series.original_name}</p>
@@ -89,6 +97,14 @@ function App() {
         {movies.map(movie => (
           <div key={movie.id} className="col">
             <div className="card h-100">
+              <img
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                className="card-img-top"
+                alt={movie.title}
+                onError={(e) => {
+                  e.target.src = 'https://via.placeholder.com/500x750?text=No+Image'
+                }}
+              />
               <div className="card-body">
                 <h5 className="card-title">Titolo: {movie.title}</h5>
                 <p className="card-text">Titolo Originale: {movie.original_title}</p>
