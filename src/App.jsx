@@ -71,37 +71,35 @@ function App() {
         <div className="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-2">
           {tv.map(series => (
             <div key={series.id} className="col">
-              <div className="card bg-dark text-light border border-primary" // added border classes
+              <div className="card bg-dark text-light border border-primary position-relative overflow-hidden"
                 style={{
-                  maxWidth: '200px',
+                  maxWidth: '300px',
                   margin: '0 auto',
-                  transition: 'transform 0.2s'
+                  transition: 'all 0.3s ease'
                 }}
               >
                 <img
                   src={`https://image.tmdb.org/t/p/w500${series.poster_path}`}
                   className="card-img-top"
                   style={{
-                    height: '280px',
-                    objectFit: 'cover',
-                    marginBottom: '0.5rem'
+                    height: '350px',
+                    objectFit: 'cover'
                   }}
                   alt={series.name}
                   onError={(e) => {
                     e.target.src = 'https://via.placeholder.com/500x750?text=No+Image'
                   }}
                 />
-                <div className="card-body p-1">
-                  <h6 className="card-title mb-1">{series.name}</h6>
-                  <p className="card-text text-secondary small mb-1">{series.original_name}</p>
-                  <div className="d-flex align-items-center gap-2 mb-1">
+                <div className="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center p-3 bg-dark bg-opacity-75 opacity-0 hover-opacity-100"
+                  style={{ transition: 'opacity 0.3s ease' }}>
+                  <h6 className="card-title mb-2">{series.name}</h6>
+                  <p className="card-text text-secondary small mb-2">{series.original_name}</p>
+                  <div className="d-flex align-items-center gap-2">
                     <ReactCountryFlag
                       countryCode={getCountryCode(series.original_language)}
                       svg
-                      style={{
-                        width: '1.2em',
-                        height: '1.2em',
-                      }}
+                      className="rounded-circle"
+                      style={{ width: '1.2em', height: '1.2em' }}
                     />
                     <div className="text-warning small">
                       {[1, 2, 3, 4, 5].map((number) => (
@@ -120,37 +118,35 @@ function App() {
 
           {movies.map(movie => (
             <div key={movie.id} className="col">
-              <div className="card bg-dark text-light border border-primary" // added border classes
+              <div className="card bg-dark text-light border border-primary position-relative overflow-hidden"
                 style={{
-                  maxWidth: '200px',
+                  maxWidth: '300px',
                   margin: '0 auto',
-                  transition: 'transform 0.2s'
+                  transition: 'all 0.3s ease'
                 }}
               >
                 <img
                   src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                  className="card-img-top rounded"
+                  className="card-img-top"
                   style={{
-                    height: '280px',
-                    objectFit: 'cover',
-                    marginBottom: '0.5rem'
+                    height: '350px',
+                    objectFit: 'cover'
                   }}
                   alt={movie.title}
                   onError={(e) => {
                     e.target.src = 'https://via.placeholder.com/500x750?text=No+Image'
                   }}
                 />
-                <div className="card-body p-1">
-                  <h6 className="card-title mb-1">{movie.title}</h6>
-                  <p className="card-text text-secondary small mb-1">{movie.original_title}</p>
-                  <div className="d-flex align-items-center gap-2 mb-1">
+                <div className="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center p-3 bg-dark bg-opacity-75 opacity-0 hover-opacity-100"
+                  style={{ transition: 'opacity 0.3s ease' }}>
+                  <h6 className="card-title mb-2">{movie.title}</h6>
+                  <p className="card-text text-secondary small mb-2">{movie.original_title}</p>
+                  <div className="d-flex align-items-center gap-2">
                     <ReactCountryFlag
                       countryCode={getCountryCode(movie.original_language)}
                       svg
-                      style={{
-                        width: '1.2em',
-                        height: '1.2em',
-                      }}
+                      className="rounded-circle"
+                      style={{ width: '1.2em', height: '1.2em' }}
                     />
                     <div className="text-warning small">
                       {[1, 2, 3, 4, 5].map((number) => (
