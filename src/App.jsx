@@ -47,7 +47,6 @@ function App() {
 
   return (
     <div className="container-fluid bg-dark text-light px-2">
-      {/* Header */}
       <div className="row justify-content-center mb-5">
         <div className="col-12 col-md-8 col-lg-6">
           <h1 className="text-center text-primary mb-4">BOOLFLIX</h1>
@@ -66,7 +65,7 @@ function App() {
         </div>
       </div>
 
-      {/* Modifica solo il contenitore principale e la griglia */}
+
       <div className="container" style={{ maxWidth: '1600px' }}>
         <div className="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-2">
           {tv.map(series => (
