@@ -90,12 +90,20 @@ function App() {
                   />
                 </p>
                 <p className="card-text">
-                  <small className="text-muted">Voto: {series.vote_average}/10</small>
+                  <strong>Voto:</strong> {[1, 2, 3, 4, 5].map((number) => {
+                    const vote = Math.ceil(series.vote_average / 2);
+                    if (number <= vote) {
+                      return <span key={number}><i className="fa-solid fa-star star-color"></i></span>;
+                    } else {
+                      return <span key={number}><i className="fa-regular fa-star star-color"></i></span>;
+                    }
+                  })}
                 </p>
               </div>
             </div>
           </div>
         ))}
+
         {movies.map(movie => (
           <div key={movie.id} className="col">
             <div className="card h-100">
@@ -121,7 +129,14 @@ function App() {
                   />
                 </p>
                 <p className="card-text">
-                  <small className="text-muted">Voto: {movie.vote_average}/10</small>
+                  <strong>Voto:</strong> {[1, 2, 3, 4, 5].map((number) => {
+                    const vote = Math.ceil(movie.vote_average / 2);
+                    if (number <= vote) {
+                      return <span key={number}><i className="fa-solid fa-star star-color"></i></span>;
+                    } else {
+                      return <span key={number}><i className="fa-regular fa-star star-color"></i></span>;
+                    }
+                  })}
                 </p>
               </div>
             </div>
