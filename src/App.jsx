@@ -91,9 +91,9 @@ function App() {
                 />
                 <div className="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center p-3 bg-dark bg-opacity-75 opacity-0 hover-opacity-100"
                   style={{ transition: 'opacity 0.3s ease' }}>
-                  <h6 className="card-title mb-2">{series.name}</h6>
-                  <p className="card-text text-secondary small mb-2">{series.original_name}</p>
-                  <div className="d-flex align-items-center gap-2">
+                  <h6 className="card-title mb-1">{series.name}</h6>
+                  <p className="card-text text-secondary small mb-1">{series.original_name}</p>
+                  <div className="d-flex align-items-center gap-2 mb-2">
                     <ReactCountryFlag
                       countryCode={getCountryCode(series.original_language)}
                       svg
@@ -109,6 +109,9 @@ function App() {
                       ))}
                     </div>
                   </div>
+                  <p className="card-text small overflow-auto" style={{ fontSize: '0.8rem', maxHeight: '150px' }}>
+                    {series.overview || 'Nessuna descrizione disponibile'}
+                  </p>
                 </div>
               </div>
             </div>
@@ -138,9 +141,9 @@ function App() {
                 />
                 <div className="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center p-3 bg-dark bg-opacity-75 opacity-0 hover-opacity-100"
                   style={{ transition: 'opacity 0.3s ease' }}>
-                  <h6 className="card-title mb-2">{movie.title}</h6>
-                  <p className="card-text text-secondary small mb-2">{movie.original_title}</p>
-                  <div className="d-flex align-items-center gap-2">
+                  <h6 className="card-title mb-1">{movie.title}</h6>
+                  <p className="card-text text-secondary small mb-1">{movie.original_title}</p>
+                  <div className="d-flex align-items-center gap-2 mb-2">
                     <ReactCountryFlag
                       countryCode={getCountryCode(movie.original_language)}
                       svg
@@ -156,6 +159,9 @@ function App() {
                       ))}
                     </div>
                   </div>
+                  <p className="card-text small overflow-auto" style={{ fontSize: '0.8rem', maxHeight: '150px' }}>
+                    {movie.overview || 'Nessuna descrizione disponibile'}
+                  </p>
                 </div>
               </div>
             </div>
