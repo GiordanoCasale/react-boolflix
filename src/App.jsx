@@ -46,7 +46,7 @@ function App() {
   }
 
   return (
-    <div className="container-fluid bg-dark text-light">
+    <div className="container-fluid bg-dark text-light px-2">
       {/* Header */}
       <div className="row justify-content-center mb-5">
         <div className="col-12 col-md-8 col-lg-6">
@@ -66,93 +66,113 @@ function App() {
         </div>
       </div>
 
-
-      <div className="row g-2">
-        {tv.map(series => (
-          <div key={series.id} className="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div className="card h-100 bg-dark border-primary text-light hover-shadow"
-              style={{ maxWidth: '250px', margin: '0 auto' }}> {/* ridotto maxWidth */}
-              <img
-                src={`https://image.tmdb.org/t/p/w500${series.poster_path}`}
-                className="card-img-top"
-                style={{ height: '250px', objectFit: 'cover' }}
-                alt={series.name}
-                onError={(e) => {
-                  e.target.src = 'https://via.placeholder.com/500x750?text=No+Image'
+      {/* Modifica solo il contenitore principale e la griglia */}
+      <div className="container" style={{ maxWidth: '1600px' }}>
+        <div className="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-2">
+          {tv.map(series => (
+            <div key={series.id} className="col">
+              <div className="card bg-dark text-light border border-primary" // added border classes
+                style={{
+                  maxWidth: '200px',
+                  margin: '0 auto',
+                  transition: 'transform 0.2s'
                 }}
-              />
-              <div className="card-body p-2">
-                <h5 className="card-title text-primary fs-6">{series.name}</h5>
-                <p className="card-text text-secondary small">{series.original_name}</p>
-                <p className="card-text d-flex align-items-center gap-2">
-                  <ReactCountryFlag
-                    countryCode={getCountryCode(series.original_language)}
-                    svg
-                    style={{
-                      width: '1.5em',
-                      height: '1.5em',
-                    }}
-                  />
-                </p>
-                <div className="text-warning">
-                  {[1, 2, 3, 4, 5].map((number) => {
-                    const vote = Math.ceil(series.vote_average / 2);
-                    return (
-                      <i key={number}
-                        className={`fa${number <= vote ? 's' : 'r'} fa-star me-1`}>
-                      </i>
-                    );
-                  })}
+              >
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${series.poster_path}`}
+                  className="card-img-top"
+                  style={{
+                    height: '280px',
+                    objectFit: 'cover',
+                    marginBottom: '0.5rem'
+                  }}
+                  alt={series.name}
+                  onError={(e) => {
+                    e.target.src = 'https://via.placeholder.com/500x750?text=No+Image'
+                  }}
+                />
+                <div className="card-body p-1">
+                  <h6 className="card-title mb-1">{series.name}</h6>
+                  <p className="card-text text-secondary small mb-1">{series.original_name}</p>
+                  <div className="d-flex align-items-center gap-2 mb-1">
+                    <ReactCountryFlag
+                      countryCode={getCountryCode(series.original_language)}
+                      svg
+                      style={{
+                        width: '1.2em',
+                        height: '1.2em',
+                      }}
+                    />
+                    <div className="text-warning small">
+                      {[1, 2, 3, 4, 5].map((number) => (
+                        <i key={number}
+                          className={`fa${number <= Math.ceil(series.vote_average / 2) ? 's' : 'r'} fa-star me-1`}
+                          style={{ fontSize: '0.8rem' }}
+                        />
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
 
 
-        {movies.map(movie => (
-          <div key={movie.id} className="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div className="card h-100 bg-dark border-primary text-light hover-shadow"
-              style={{ maxWidth: '250px', margin: '0 auto' }}> {/* ridotto maxWidth */}
-              <img
-                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                className="card-img-top"
-                style={{ height: '250px', objectFit: 'cover' }}
-                alt={movie.title}
-                onError={(e) => {
-                  e.target.src = 'https://via.placeholder.com/500x750?text=No+Image'
+          {movies.map(movie => (
+            <div key={movie.id} className="col">
+              <div className="card bg-dark text-light border border-primary" // added border classes
+                style={{
+                  maxWidth: '200px',
+                  margin: '0 auto',
+                  transition: 'transform 0.2s'
                 }}
-              />
-              <div className="card-body p-2">
-                <h5 className="card-title text-primary fs-6">{movie.title}</h5>
-                <p className="card-text text-secondary small">{movie.original_title}</p>
-                <p className="card-text d-flex align-items-center gap-2">
-                  <ReactCountryFlag
-                    countryCode={getCountryCode(movie.original_language)}
-                    svg
-                    style={{
-                      width: '1.5em',
-                      height: '1.5em',
-                    }}
-                  />
-                </p>
-                <div className="text-warning">
-                  {[1, 2, 3, 4, 5].map((number) => {
-                    const vote = Math.ceil(movie.vote_average / 2);
-                    return (
-                      <i key={number}
-                        className={`fa${number <= vote ? 's' : 'r'} fa-star me-1`}>
-                      </i>
-                    );
-                  })}
+              >
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  className="card-img-top rounded"
+                  style={{
+                    height: '280px',
+                    objectFit: 'cover',
+                    marginBottom: '0.5rem'
+                  }}
+                  alt={movie.title}
+                  onError={(e) => {
+                    e.target.src = 'https://via.placeholder.com/500x750?text=No+Image'
+                  }}
+                />
+                <div className="card-body p-1">
+                  <h6 className="card-title mb-1">{movie.title}</h6>
+                  <p className="card-text text-secondary small mb-1">{movie.original_title}</p>
+                  <div className="d-flex align-items-center gap-2 mb-1">
+                    <ReactCountryFlag
+                      countryCode={getCountryCode(movie.original_language)}
+                      svg
+                      style={{
+                        width: '1.2em',
+                        height: '1.2em',
+                      }}
+                    />
+                    <div className="text-warning small">
+                      {[1, 2, 3, 4, 5].map((number) => (
+                        <i key={number}
+                          className={`fa${number <= Math.ceil(movie.vote_average / 2) ? 's' : 'r'} fa-star me-1`}
+                          style={{ fontSize: '0.8rem' }}
+                        />
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   )
-}
+
+
+
+
+};
 
 export default App
